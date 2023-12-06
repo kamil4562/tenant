@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./Docker/Dockerfile
+    container_name: tenant2
+    ports:
+      - 10025:80
+      - 10026:5173
+    volumes:
+      - ./:/var/www/app
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+    ports:
+      - 3309:3306
